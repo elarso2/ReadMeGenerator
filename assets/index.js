@@ -52,17 +52,37 @@ const questions = [
     message: "What is your email address?",
   },
   //Maybe don't need this final input?
-  {
-    type: "input",
-    name: "contactInstructions",
-    message: "Please enter any instructions about how to contact you.",
-  },
+  //   {
+  //     type: "input",
+  //     name: "contactInstructions",
+  //     message: "Please enter any instructions about how to contact you.",
+  //   },
 ];
 
 inquirer.prompt(questions).then(function (data) {
   console.log(data);
   let userInput = JSON.stringify(data);
-  fs.writeFile("generatedReadMe.md", userInput, function (err) {
+
+  const content = `# ${data.title}
+
+## Table of Contents
+
+## Description
+${data.description}.
+
+## Installation
+${data.installation}
+## Usage
+${data.usage}
+## Contributing
+${data.contributing}
+## Tests
+${data.tests}
+## Questions and Contact
+
+If you have any questions, please feel free to reach out to me on my [GitHub](github.com/${data.github}) or through email at ${data.email}.
+`;
+  fs.writeFile("generatedReadMe.md", content, function (err) {
     err ? console.error(err) : console.log("Success");
   });
 });
