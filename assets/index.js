@@ -61,4 +61,8 @@ const questions = [
 
 inquirer.prompt(questions).then(function (data) {
   console.log(data);
+  let userInput = JSON.stringify(data);
+  fs.writeFile("generatedReadMe.md", userInput, function (err) {
+    err ? console.error(err) : console.log("Success");
+  });
 });
