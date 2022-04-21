@@ -1,88 +1,59 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-//Asking user questions for ReadMe content
-
+//Create an array of questions for user input (minus license)
 const questions = [
-  {
-    type: "input",
-    name: "title",
-    message: "What is the title of your project?",
-  },
-  {
-    type: "input",
-    name: "description",
-    message: "What is your project's description?",
-  },
-  {
-    type: "input",
-    name: "installation",
-    message: "What are your installation instructions?",
-  },
-  {
-    type: "input",
-    name: "usage",
-    message: "Give us some information about the proper usage of your project.",
-  },
-  {
-    type: "list",
-    name: "license",
-    message: "Which license would you like to include?",
-    choices: ["mit"],
-  },
-  {
-    type: "input",
-    name: "contibuting",
-    message: "Do you have any contribution guidelines?",
-  },
-  {
-    type: "input",
-    name: "tests",
-    message: "Please enter any test instructions for your project.",
-  },
-  {
-    type: "input",
-    name: "github",
-    message:
-      "Please enter your GitHub profile name so a link to your GitHub can be generated.",
-  },
-  {
-    type: "input",
-    name: "email",
-    message: "What is your email address?",
-  },
-  //Maybe don't need this final input?
-  //   {
-  //     type: "input",
-  //     name: "contactInstructions",
-  //     message: "Please enter any instructions about how to contact you.",
-  //   },
+  "What is the title of your project?",
+  "Write a description for your project.",
+  "What are the installation instructions for your project?",
+  "Give us some information about the proper usage of your project.",
+  "Do you have any contribution guidelines?",
+  "Please enter any test instructions for your project.",
+  "Please enter your GitHub username.",
+  "What is your email address?",
+  "What is your full name?",
 ];
 
-inquirer.prompt(questions).then(function (data) {
-  console.log(data);
-  let userInput = JSON.stringify(data);
+const name = [
+  "title",
+  "description",
+  "installation",
+  "usage",
+  "contributing",
+  "tests",
+  "github",
+  "email",
+  "fullname",
+];
 
-  const content = `# ${data.title}
+const questionArr = [];
 
-## Table of Contents
-
-## Description
-${data.description}.
-
-## Installation
-${data.installation}
-## Usage
-${data.usage}
-## Contributing
-${data.contributing}
-## Tests
-${data.tests}
-## Questions and Contact
-
-If you have any questions, please feel free to reach out to me on my [GitHub](github.com/${data.github}) or through email at ${data.email}.
-`;
-  fs.writeFile("generatedReadMe.md", content, function (err) {
-    err ? console.error(err) : console.log("Success");
+for (let i = 0; i < questions.length; i++) {
+  questionArr.push({
+    type: "input",
+    name: name[i],
+    message: questions[i],
   });
-});
+}
+
+// Function to initialize the prompts
+function init() {
+  inquirer.prompt([
+    ...questionArr,
+    {
+      type: "list",
+      name: "license",
+      message: "Which license would you like to include, if any?",
+      choices: ["MIT", "BSD 2-Clause", "BSD 3-Clause", "The Unlicense", "None"],
+    },
+  ]);
+}
+
+// inquirer.prompt(questionArr).then(function (data) {
+//   fs.writeFile("generatedReadMe.md", content, function (err) {
+//     err ? console.error(err) : console.log("Success");
+//   });
+// });
+
+//Initializing the prompts
+init();
