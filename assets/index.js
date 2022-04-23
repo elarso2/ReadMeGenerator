@@ -56,9 +56,13 @@ function init() {
       },
     ])
     .then(function (data) {
-      fs.writeFile("generatedReadMe.md", data, function (err) {
-        err ? console.error(err) : console.log("Success");
-      });
+      fs.writeFile(
+        "generatedReadMe.md",
+        generateMarkdown(data),
+        function (err) {
+          err ? console.error(err) : console.log("Success");
+        }
+      );
     });
 }
 
