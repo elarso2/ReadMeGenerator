@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("./generateMarkdown.js");
 
 //Create an array of questions for user input (minus license)
 const questions = [
@@ -38,15 +39,27 @@ for (let i = 0; i < questions.length; i++) {
 
 // Function to initialize the prompts
 function init() {
-  inquirer.prompt([
-    ...questionArr,
-    {
-      type: "list",
-      name: "license",
-      message: "Which license would you like to include, if any?",
-      choices: ["MIT", "BSD 2-Clause", "BSD 3-Clause", "The Unlicense", "None"],
-    },
-  ]);
+  inquirer
+    .prompt([
+      ...questionArr,
+      {
+        type: "list",
+        name: "license",
+        message: "Which license would you like to include, if any?",
+        choices: [
+          "MIT",
+          "BSD 2-Clause",
+          "BSD 3-Clause",
+          "The Unlicense",
+          "None",
+        ],
+      },
+    ])
+    .then(function (data) {
+      fs.writeFile("generatedReadMe.md", data, function (err) {
+        err ? console.error(err) : console.log("Success");
+      });
+    });
 }
 
 // inquirer.prompt(questionArr).then(function (data) {
