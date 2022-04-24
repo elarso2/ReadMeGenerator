@@ -1,5 +1,5 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+//Function to render the badge associated with the chosen license, and make the badge a clickable link to redirect the user to the license page if they'd like.
+// If there is no license, an empty string is returned.
 function renderLicenseBadge(license) {
   if (license == "None") {
     return "";
@@ -26,22 +26,24 @@ const licenseOpt = [
   "All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
   "This is free and unencumbered software released into the public domain. Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means. In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law. THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. For more information, please refer to https://unlicense.org",
 ];
-function renderLicenseLink(license) {
-  if (license == "None") {
-    return "";
-  } else if (license == "MIT") {
-    return `https://mit-license.org/`;
-  } else if (license == "BSD 2-Clause") {
-    return `https://opensource.org/licenses/BSD-2-Clause`;
-  } else if (license == "BSD 3-Clause") {
-    return `https://opensource.org/licenses/BSD-3-Clause`;
-  } else if (license == "The Unlicense") {
-    return `https://unlicense.org/`;
-  }
-}
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+//This function originally created the license link to be displayed at the bottom of the README, but I decided to to make the license badges clickable, so this function is no longer necessary.
+//I left this function in the code, albeit commented out, to show that I was not ignoring that this function should exist in the code.
+// function renderLicenseLink(license) {
+//   if (license == "None") {
+//     return "";
+//   } else if (license == "MIT") {
+//     return `https://mit-license.org/`;
+//   } else if (license == "BSD 2-Clause") {
+//     return `https://opensource.org/licenses/BSD-2-Clause`;
+//   } else if (license == "BSD 3-Clause") {
+//     return `https://opensource.org/licenses/BSD-3-Clause`;
+//   } else if (license == "The Unlicense") {
+//     return `https://unlicense.org/`;
+//   }
+// }
+
+//Function to render the license section for the README based on the user's choice. If they chose "none", an empty string is returned.
 function renderLicenseSection(license, fullname) {
   if (license == "None") {
     return "";
@@ -64,7 +66,7 @@ function renderLicenseSection(license, fullname) {
   }
 }
 
-// TODO: Create a function to generate markdown for README
+// Function to generate the README for the user, with their input placed into the template using template literals.
 function generateMarkdown(data) {
   return `# ${data.title}
   ${renderLicenseBadge(data.license)}
@@ -99,8 +101,8 @@ function generateMarkdown(data) {
   
   ${renderLicenseSection(data.license, data.fullname)}
 
-  ${renderLicenseLink(data.license)}
   `;
 }
 
+//Allows this file and it's functions to be exported to the index.js file in order for the README to be generated.
 module.exports = generateMarkdown;

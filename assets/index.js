@@ -15,6 +15,7 @@ const questions = [
   "What is your full name?",
 ];
 
+//An array of the names associated with each question for use with template literals.
 const name = [
   "title",
   "description",
@@ -27,6 +28,7 @@ const name = [
   "fullname",
 ];
 
+//Creating an empty question array that will be filled with the questions and their respective names for the inquirer prompts.
 const questionArr = [];
 
 for (let i = 0; i < questions.length; i++) {
@@ -38,6 +40,7 @@ for (let i = 0; i < questions.length; i++) {
 }
 
 // Function to initialize the prompts
+// Also adds on the license question, which could not be added using the previous iteration because it has a different prompt type.
 function init() {
   inquirer
     .prompt([
@@ -55,22 +58,13 @@ function init() {
         ],
       },
     ])
+    //Generates the new README.md file
     .then(function (data) {
-      fs.writeFile(
-        "generatedReadMe.md",
-        generateMarkdown(data),
-        function (err) {
-          err ? console.error(err) : console.log("Success");
-        }
-      );
+      fs.writeFile("ReadMe.md", generateMarkdown(data), function (err) {
+        err ? console.error(err) : console.log("Success");
+      });
     });
 }
-
-// inquirer.prompt(questionArr).then(function (data) {
-//   fs.writeFile("generatedReadMe.md", content, function (err) {
-//     err ? console.error(err) : console.log("Success");
-//   });
-// });
 
 //Initializing the prompts
 init();
