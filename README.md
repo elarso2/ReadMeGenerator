@@ -13,11 +13,17 @@
 
 ## Description
 
-The goal of this assignment was to use node.js, npm inquirer, and template literals to create a program which helps a user generate a ReadMe.md. Once the user begins to run the program, using the node index.js command, they answer a series of questions and prompts which allow them to fill in information regarding the title, description, installation instructions, usage, contribution guidelines, testing, and how to contact them with any question regarding their repository, and gives the user several license options to choose from. Once the user has answered all the questions, their input is plugged into a ReadMe outline, and their selected license is also populated, complete with a license badge at the top of the README that is a clickable link to the license page, and links to their GitHub profile and email.
+The goal of this assignment was to use node.js, npm inquirer, and template literals to create a program which helps a user generate a ReadMe.md. Once the user begins to run the program, using the node index.js command, they answer a series of questions and prompts which allow them to fill in information regarding the title, description, installation instructions, usage, contribution guidelines, testing, and how to contact them with any question regarding their repository, and gives the user several license options to choose from. Once the user has answered all the questions, their input is plugged into a ReadMe outline, and their selected license is also populated, complete with a license badge at the top of the README that is a clickable link to the license page, and links to their GitHub profile and email, and a "Success" message is given so they know their README has been generated.
+
+An example of the inquirer prompts can be seen in this image.
+
+![terminal example image](./assets/terminalImg.png)
+
+And a video demonstration of this code being used can be viewed by following [this link](https://youtu.be/8yj803iLvhk).
 
 ## Installation
 
-It is necessary to have node.js installed on your computer, and the inquirer package must be downloaded in order to run the program.
+Begin by forking this repository into your own GitHub and cloning it. Be certain that node.js is installed on your computer, and open a terminal in the assets folder in order to run a npm install so that all dependencies listed in package.json can be downloaded.
 
 ## Usage
 
