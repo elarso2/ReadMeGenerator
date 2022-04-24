@@ -4,13 +4,13 @@ function renderLicenseBadge(license) {
   if (license == "None") {
     return "";
   } else if (license == "MIT") {
-    return "![MIT Badge](https://img.shields.io/badge/License-MIT-yellow.svg)";
+    return "[![MIT Badge](https://img.shields.io/badge/License-MIT-yellow.svg)](https://mit-license.org/)";
   } else if (license == "BSD 2-Clause") {
-    return "![BSD 2-Clause Badge](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)";
+    return "[![BSD 2-Clause Badge](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)";
   } else if (license == "BSD 3-Clause") {
-    return "![BSD 3-Clause Badge](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)";
+    return "[![BSD 3-Clause Badge](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
   } else if (license == "The Unlicense") {
-    return "![Unlicense Badge](https://img.shields.io/badge/license-Unlicense-blue.svg)";
+    return "[![Unlicense Badge](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://unlicense.org/)";
   }
 }
 
@@ -78,7 +78,7 @@ function generateMarkdown(data) {
   * [Questions](#questions)
   
   ## Description
-  ${data.description}.
+  ${data.description}
   
   ## Installation
   ${data.installation}
